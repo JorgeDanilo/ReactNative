@@ -1,118 +1,42 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { HelloWorldScreen } from './src/presentation/screens/HelloWorldScreen';
+import { CounterScreen } from './src/presentation/screens/CounterScreen';
+import { CounterM3Screen } from './src/presentation/screens/CounterM3Screen';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import IonIcon from 'react-native-vector-icons/Ionicons'
+import { BoxObjectModelScreen } from './src/presentation/screens/BoxObjectModelScreen';
+import { DimensionScreen } from './src/presentation/screens/DimensionScreen';
+import { PositionsScreen } from './src/presentation/screens/PositionsScreen';
+import { PositionsScreen2 } from './src/presentation/screens/PositionsScreen2';
+import { FlexScreen } from './src/presentation/screens/FlexScreen';
+import { FlexDirectionScreen } from './src/presentation/screens/FlexDirectionScreen';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+const theme = {
+  ...DefaultTheme,
+  colors: {
+      ...DefaultTheme.colors,
+      primary: 'tomato',
+      accent: 'purple'
+  }
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+export const App = () => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <PaperProvider 
+    settings={{ icon: (props) => <IonIcon { ...props } /> }}
+    theme={theme}>
+    <SafeAreaView style={{ flex: 1 }}>
+          {/* <HelloWorldScreen name="Jorge Silva" />   */}
+          {/* <CounterScreen /> */}
+          {/* <CounterM3Screen /> */}
+          {/* <BoxObjectModelScreen /> */}
+          {/* <DimensionScreen /> */}
+          {/* <PositionsScreen2 /> */}
+          <FlexDirectionScreen />
+        </SafeAreaView>
+    </PaperProvider>
+
+
+  )
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
